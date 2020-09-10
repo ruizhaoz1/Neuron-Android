@@ -7,11 +7,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Neuron Document</title>
+    <title>Cyton Document</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="description" content="Description">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+    <link rel="stylesheet" href="https://cdn.cryptape.com/styles/docs.css">
 
 </head>
 
@@ -21,20 +22,8 @@
     <nav class="app-nav no-badge">
         <ul>
             <li>
-                <a href="https://cryptape.github.io/Nervos-Docs">Nervos</a>
-                <ul>
-                    <li>
-                        <a href="https://cryptape.github.io/Nervos-AppChain-Docs/">AppChain</a>
-                    </li>
-                    <li>
-                        <a href="https://cryptape.github.io/cita/">CITA</a>
-                    </li>
-                    <li>
-                        <a href="https://cryptape.github.io/Neuron-Android/#/">Neuron</a>
-                    </li>
-                    <li>
-                        <a href="https://cryptape.github.io/Microscope/">Microscope</a>
-                    </li>
+                <a href="https://docs.nervos.org/"  target="_about" class="app-nav-1">Nervos</a>
+                <ul id="project-list">
                 </ul>
             </li>
             <!-- <li id="tag_language">Language
@@ -80,6 +69,16 @@
         gtag('js', new Date());
 
         gtag('config', 'UA-122001869-4');
+        // external script
+        const external = document.createElement("script")
+        const timeStamp = new Date().getTime()
+        external.src = "https://cdn.cryptape.com/scripts/external.js?" + timeStamp
+        document.body.appendChild(external)
+        // custom style
+        const docStyle = document.createElement('link')
+        docStyle.rel = 'stylesheet'
+        docStyle.href = "https://cdn.cryptape.com/styles/docs.css?" + timeStamp
+        document.head.appendChild(docStyle)
     </script>
 
 </body>

@@ -2,12 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@color/colorPrimary">
+        android:background="@color/white">
         <RelativeLayout
             android:id="@+id/title_bar_left"
             android:layout_width="48dp"
@@ -19,9 +20,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textSize="15sp"
-                android:drawableLeft="@drawable/back"
-                android:textColor="@color/default_gray_6"
-                android:paddingLeft="@dimen/default_margin"
+                android:drawableStart="@drawable/black_back"
+                android:textColor="@color/font_title_second"
+                android:paddingStart="@dimen/default_margin"
                 android:layout_centerVertical="true" />
 
         </RelativeLayout>
@@ -35,18 +36,23 @@
             android:layout_marginEnd="@dimen/default_margin"
             android:layout_marginBottom="@dimen/default_margin"
             android:layout_centerInParent="true"
-            android:background="@drawable/rectangle_border_white_corner">
+            android:background="@color/white">
 
             <android.support.v7.widget.AppCompatEditText
                 android:id="@+id/title_input"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:background="@color/white"
+                android:paddingEnd="45dp"
+                android:singleLine="true"
+                android:ellipsize="none"
+                android:background="@drawable/rectangle_border_gray_corner"
+                android:drawableStart="@drawable/add_website_hint_image"
+                android:drawablePadding="5dp"
                 android:imeOptions="actionDone"
                 android:hint="@string/input_app_website_hint"
-                android:textColor="@color/default_black"
+                android:textColorHint="@color/font_hint"
+                android:textColor="@color/font_title"
                 android:textSize="14sp"/>
 
             <ImageView

@@ -2,10 +2,13 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/default_background"
-    android:textColor="@color/default_black"
-    android:padding="10dp"
+    android:background="@color/white"
+    android:ellipsize="end"
     android:gravity="right"
+    android:maxEms="10"
+    android:padding="5dp"
+    android:singleLine="true"
+    android:textColor="@color/font_title"
     android:textSize="14sp">
 
 </TextView>

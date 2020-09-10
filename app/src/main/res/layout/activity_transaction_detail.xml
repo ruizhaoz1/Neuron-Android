@@ -1,273 +1,409 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <FrameLayout
+    <com.cryptape.cita_wallet.view.TitleBar
+        android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:background="@color/white">
-        <org.nervos.neuron.custom.TitleBar
-            android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@color/colorPrimary"
-            app:title="@string/transaction_detail_title"
-            app:isShowLeft="true"/>
+        android:layout_height="48dp"
+        app:isShowLeft="true"
+        app:isShowRight="true"
+        app:right_img="@drawable/ic_transaction_share"
+        app:title="@string/transaction_detail_title" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginTop="50dp"
-            android:elevation="10dp"
-            android:background="@drawable/rectangle_border_gray_corner">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/wallet_photo"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/default_margin"
-                android:src="@drawable/wallet_photo"
-                app:civ_border_width="1dp"
-                app:civ_border_color="@color/default_gray_d5"/>
-
-            <TextView
-                android:id="@+id/wallet_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@id/wallet_photo"
-                android:layout_toEndOf="@id/wallet_photo"
-                android:layout_marginStart="@dimen/default_margin"
-                android:textSize="14sp"
-                android:textColor="@color/default_black"
-                android:text="Watson"
-                android:layout_marginTop="10dp"/>
-
-            <TextView
-                android:id="@+id/wallet_address"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="@color/default_black"
-                android:singleLine="true"
-                android:ellipsize="middle"
-                android:maxEms="8"
-                android:layout_marginTop="10dp"
-                android:layout_alignStart="@id/wallet_name"
-                android:layout_below="@id/wallet_name"/>
-
-            <TextView
-                android:id="@+id/transaction_amount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/default_margin"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:textColor="@color/default_black"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
-
-        </RelativeLayout>
-    </FrameLayout>
+    <View
+        android:id="@+id/view_block"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/default_background" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <LinearLayout
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cl_share"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="@dimen/default_margin"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/cl_top_info"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginEnd="@dimen/default_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:id="@+id/iv_token_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/bg_transaction_detail_success"
+                    android:gravity="center_vertical"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/iv_token_icon"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_transaction_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:textColor="@color/font_title"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/tv_transaction_blockchain_time"
+                    app:layout_constraintEnd_toStartOf="@id/tv_token_unit"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/tv_token_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/font_title"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_transaction_amount"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_transaction_amount" />
+
+                <TextView
+                    android:id="@+id/tv_transaction_blockchain_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@color/font_title_second"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_transaction_amount" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <View
+                android:id="@+id/line1"
+                style="@style/separateLineLong"
+                android:layout_width="0dp"
+                app:layout_constraintStart_toStartOf="@id/cl_top_info"
+                app:layout_constraintTop_toBottomOf="@id/cl_top_info" />
+
             <TextView
+                android:id="@+id/tv_transaction_sender_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="交易成功"
-                android:textSize="16sp"
-                android:textColor="@color/default_black"
-                android:drawablePadding="10dp"
-                android:layout_marginBottom="@dimen/default_margin"
-                android:layout_gravity="center_horizontal"
-                android:drawableTop="@drawable/success"/>
+                android:layout_marginTop="20dp"
+                android:text="@string/transaction_sender"
+                android:textColor="@color/font_title_second"
+                android:textSize="13sp"
+                app:layout_constraintStart_toStartOf="@id/cl_top_info"
+                app:layout_constraintTop_toBottomOf="@id/line1" />
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/tv_transaction_sender"
+                android:layout_width="0dp"
+                android:layout_height="18dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:ellipsize="middle"
+                android:singleLine="true"
+                android:textColor="@color/font_title"
+                app:layout_constraintEnd_toStartOf="@id/iv_transaction_sender_copy"
+                app:layout_constraintStart_toStartOf="@id/tv_transaction_sender_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_transaction_sender_title" />
+
+            <ImageView
+                android:id="@+id/iv_transaction_sender_copy"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="@drawable/ic_transaction_detail_copy"
+                app:layout_constraintBottom_toBottomOf="@id/tv_transaction_sender"
+                app:layout_constraintEnd_toEndOf="@id/cl_top_info"
+                app:layout_constraintTop_toTopOf="@id/tv_transaction_sender" />
+
+            <View
+                android:id="@+id/line2"
+                style="@style/separateLineLong"
+                android:layout_width="0dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="@id/cl_top_info"
+                app:layout_constraintTop_toBottomOf="@id/tv_transaction_sender" />
+
+            <TextView
+                android:id="@+id/tv_transaction_receiver_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/transaction_receiver"
+                android:textColor="@color/font_title_second"
+                android:textSize="13sp"
+                app:layout_constraintStart_toStartOf="@id/cl_top_info"
+                app:layout_constraintTop_toBottomOf="@id/line2" />
+
+            <TextView
+                android:id="@+id/tv_transaction_receiver"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:ellipsize="middle"
+                android:singleLine="true"
+                android:textColor="@color/font_title"
+                app:layout_constraintEnd_toStartOf="@id/iv_transaction_receiver_copy"
+                app:layout_constraintStart_toStartOf="@id/tv_transaction_receiver_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_transaction_receiver_title" />
+
+            <ImageView
+                android:id="@+id/iv_transaction_receiver_copy"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="@drawable/ic_transaction_detail_copy"
+                app:layout_constraintBottom_toBottomOf="@id/tv_transaction_receiver"
+                app:layout_constraintEnd_toEndOf="@id/cl_top_info"
+                app:layout_constraintTop_toTopOf="@id/tv_transaction_receiver" />
+
+            <View
+                android:id="@+id/line_receiver"
+                style="@style/separateLineLong"
+                android:layout_width="0dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="@id/cl_top_info"
+                app:layout_constraintTop_toBottomOf="@id/iv_transaction_receiver_copy" />
+
+            <ImageView
+                android:id="@+id/iv_microscope"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="@dimen/default_margin"
+                app:layout_constraintStart_toStartOf="@+id/cl_top_info"
+                app:layout_constraintTop_toBottomOf="@id/line_receiver" />
+
+            <TextView
+                android:id="@+id/tv_microscope"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_marginStart="5dp"
+                android:text="@string/go_to_microscope_tips"
+                android:textColor="@color/font_link"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_microscope"
+                app:layout_constraintStart_toEndOf="@+id/iv_microscope"
+                app:layout_constraintTop_toTopOf="@+id/iv_microscope" />
+
+            <ImageView
+                android:id="@+id/iv_microscope_arrow"
+                android:layout_width="6dp"
+                android:layout_height="11dp"
+                android:layout_marginStart="1dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_microscope"
+                app:layout_constraintStart_toEndOf="@+id/tv_microscope"
+                app:layout_constraintTop_toTopOf="@+id/tv_microscope"
+                app:srcCompat="@drawable/icon_microscope_right_arrow" />
+
+            <View
+                android:id="@+id/view_block1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginStart="@dimen/default_margin"
-                android:layout_marginEnd="@dimen/default_margin">
+                android:layout_height="10dp"
+                android:layout_marginTop="@dimen/default_margin"
+                android:background="@color/default_background"
+                app:layout_constraintTop_toBottomOf="@id/iv_microscope_arrow" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="区块链网络"
-                    android:textColor="@color/default_gray_6"
-                    android:textSize="14sp"
-                    android:drawableStart="@drawable/dot"
-                    android:drawablePadding="10dp"/>
+            <TextView
+                android:id="@+id/tv_transaction_hash_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/transaction_number"
+                android:textColor="@color/font_title_second"
+                android:textSize="13sp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="@+id/cl_top_info"
+                app:layout_constraintTop_toBottomOf="@+id/view_block1" />
 
-                <TextView
-                    android:id="@+id/chain_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ethereum_mainnet"
-                    android:layout_marginStart="@dimen/default_margin"
-                    android:textColor="@color/default_black"
-                    android:textSize="14sp"
-                    android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/tv_transaction_hash"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/font_title"
+                android:textSize="14sp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@id/cl_top_info"
+                app:layout_constraintStart_toStartOf="@+id/cl_top_info"
+                app:layout_constraintTop_toBottomOf="@id/tv_transaction_hash_title" />
 
+            <View
+                android:id="@+id/line_transaction_hash"
+                style="@style/separateLineLong"
+                android:layout_width="0dp"
+                android:layout_marginTop="20dp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="@id/cl_top_info"
+                app:layout_constraintTop_toBottomOf="@id/tv_transaction_hash" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="接收方"
-                    android:textColor="@color/default_gray_6"
-                    android:textSize="14sp"
-                    android:layout_marginTop="@dimen/default_margin"
-                    android:drawableStart="@drawable/dot"
-                    android:drawablePadding="10dp"/>
+            <TextView
+                android:id="@+id/tv_chain_name_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/transaction_network"
+                android:textColor="@color/font_title_second"
+                android:textSize="13sp"
+                app:layout_constraintStart_toStartOf="@+id/cl_top_info"
+                app:layout_constraintTop_toBottomOf="@+id/line_transaction_hash" />
 
-                <TextView
-                    android:id="@+id/transaction_to_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/font_blue"
-                    android:textSize="14sp"
-                    android:drawableStart="@drawable/copy"
-                    android:drawablePadding="10dp"
-                    android:layout_marginStart="@dimen/default_margin"
-                    android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/tv_chain_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/font_title"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/cl_top_info"
+                app:layout_constraintStart_toStartOf="@+id/cl_top_info"
+                app:layout_constraintTop_toBottomOf="@id/tv_chain_name_title" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="发送方"
-                    android:textColor="@color/default_gray_6"
-                    android:textSize="14sp"
-                    android:layout_marginTop="@dimen/default_margin"
-                    android:drawableStart="@drawable/dot"
-                    android:drawablePadding="10dp"/>
+            <View
+                android:id="@+id/line7"
+                style="@style/separateLineLong"
+                android:layout_width="0dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="@id/cl_top_info"
+                app:layout_constraintTop_toBottomOf="@id/tv_chain_name" />
 
-                <TextView
-                    android:id="@+id/transaction_from_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/font_blue"
-                    android:textSize="14sp"
-                    android:drawableStart="@drawable/copy"
-                    android:drawablePadding="10dp"
-                    android:layout_marginStart="@dimen/default_margin"
-                    android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/tv_transaction_blockchain_height_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/transaction_blockchain_no"
+                android:textColor="@color/font_title_second"
+                android:textSize="13sp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="@+id/cl_top_info"
+                app:layout_constraintTop_toBottomOf="@+id/line7" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_margin"
-                    android:text="手续费"
-                    android:textColor="@color/default_gray_6"
-                    android:textSize="14sp"
-                    android:drawableStart="@drawable/dot"
-                    android:drawablePadding="10dp"/>
+            <TextView
+                android:id="@+id/tv_transaction_blockchain_height"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/font_title"
+                android:textSize="14sp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@id/cl_top_info"
+                app:layout_constraintStart_toStartOf="@+id/cl_top_info"
+                app:layout_constraintTop_toBottomOf="@id/tv_transaction_blockchain_height_title" />
 
-                <TextView
-                    android:id="@+id/transaction_gas"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0.05eth"
-                    android:layout_marginStart="@dimen/default_margin"
-                    android:textColor="@color/default_black"
-                    android:textSize="14sp"
-                    android:layout_marginTop="10dp"/>
+            <View
+                android:id="@+id/line_blockchain_height"
+                style="@style/separateLineLong"
+                android:layout_width="0dp"
+                android:layout_marginTop="20dp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="@id/cl_top_info"
+                app:layout_constraintTop_toBottomOf="@id/tv_transaction_blockchain_height" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_margin"
-                    android:text="GasPrice"
-                    android:textColor="@color/default_gray_6"
-                    android:textSize="14sp"
-                    android:drawableStart="@drawable/dot"
-                    android:drawablePadding="10dp"/>
+            <TextView
+                android:id="@+id/tv_transaction_gas_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/transaction_gas"
+                android:textColor="@color/font_title_second"
+                android:textSize="13sp"
+                app:layout_constraintStart_toStartOf="@+id/cl_top_info"
+                app:layout_constraintTop_toBottomOf="@+id/line_blockchain_height" />
 
-                <TextView
-                    android:id="@+id/transaction_gas_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0.005eth"
-                    android:layout_marginStart="@dimen/default_margin"
-                    android:textColor="@color/default_black"
-                    android:textSize="14sp"
-                    android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/tv_transaction_gas"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/font_title"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/cl_top_info"
+                app:layout_constraintStart_toStartOf="@+id/cl_top_info"
+                app:layout_constraintTop_toBottomOf="@id/tv_transaction_gas_title" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_margin"
-                    android:text="交易流水"
-                    android:textColor="@color/default_gray_6"
-                    android:textSize="14sp"
-                    android:drawableStart="@drawable/dot"
-                    android:drawablePadding="10dp"/>
+            <View
+                android:id="@+id/line_gas"
+                style="@style/separateLineLong"
+                android:layout_width="0dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="@id/cl_top_info"
+                app:layout_constraintTop_toBottomOf="@id/tv_transaction_gas" />
 
-                <TextView
-                    android:id="@+id/transaction_hash"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0x2343445465565677"
-                    android:textColor="@color/font_blue"
-                    android:textSize="14sp"
-                    android:drawableStart="@drawable/copy"
-                    android:drawablePadding="10dp"
-                    android:layout_marginStart="@dimen/default_margin"
-                    android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/tv_transaction_gas_price_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/font_title_second"
+                android:textSize="13sp"
+                app:layout_constraintStart_toStartOf="@+id/cl_top_info"
+                app:layout_constraintTop_toBottomOf="@+id/line_gas" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_margin"
-                    android:text="所在区块"
-                    android:textColor="@color/default_gray_6"
-                    android:textSize="14sp"
-                    android:drawableStart="@drawable/dot"
-                    android:drawablePadding="10dp"/>
+            <TextView
+                android:id="@+id/tv_transaction_gas_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/font_title"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/cl_top_info"
+                app:layout_constraintStart_toStartOf="@+id/cl_top_info"
+                app:layout_constraintTop_toBottomOf="@id/tv_transaction_gas_price_title" />
 
-                <TextView
-                    android:id="@+id/transaction_block_number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="12007"
-                    android:layout_marginStart="@dimen/default_margin"
-                    android:textColor="@color/default_black"
-                    android:textSize="14sp"
-                    android:layout_marginTop="10dp"/>
+            <View
+                android:id="@+id/line_gas_price"
+                style="@style/separateLineLong"
+                android:layout_width="0dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="@id/cl_top_info"
+                app:layout_constraintTop_toBottomOf="@id/tv_transaction_gas_price" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_margin"
-                    android:text="入块时间"
-                    android:textColor="@color/default_gray_6"
-                    android:textSize="14sp"
-                    android:drawableStart="@drawable/dot"
-                    android:drawablePadding="10dp"/>
+            <TextView
+                android:id="@+id/tv_transaction_gas_limit_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/font_title_second"
+                android:textSize="13sp"
+                app:layout_constraintStart_toStartOf="@+id/cl_top_info"
+                app:layout_constraintTop_toBottomOf="@+id/line_gas_price" />
 
-                <TextView
-                    android:id="@+id/transaction_block_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="2018-3-23 12:20"
-                    android:layout_marginStart="@dimen/default_margin"
-                    android:textColor="@color/default_black"
-                    android:textSize="14sp"
-                    android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/tv_transaction_gas_limit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/font_title"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/cl_top_info"
+                app:layout_constraintStart_toStartOf="@+id/cl_top_info"
+                app:layout_constraintTop_toBottomOf="@id/tv_transaction_gas_limit_title" />
 
-            </LinearLayout>
-        </LinearLayout>
+        </android.support.constraint.ConstraintLayout>
     </ScrollView>
 
 </LinearLayout>

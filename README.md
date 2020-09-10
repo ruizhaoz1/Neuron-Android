@@ -1,20 +1,34 @@
+![](https://img.shields.io/badge/made%20for-CITA-blue.svg)
 
-Welcome to Neuron's open source Android app!
+# Cyton Wallet (Android)
+
+Overview
+===============
+
+Cyton is an open source blockchain wallet which supports [Ethereum](https://www.ethereum.org/) and [CITA](https://github.com/cryptape/cita). It supports most tokens of Ethereum and CITA, such as ETH, ERC20, ERC721, and also supports most kinds of DApps of Ethereum and CITA , such as cryptokitties, Fomo3D, 0xproject...
 
 Getting Started
 ===============
+
+### Open from source code
 
 1. Clone this repo to your machine
 2. Download and install [Android Studio](https://developer.android.com/studio/index.html)
 3. Open this project in Android Studio (Choosing the contained directory in Android Studio `Open` dialog works)
 4. Click the `Play` button
 
+### Install from apk file
+
+You can download apk file from [release](https://github.com/cryptape/cyton-android/releases) and install directly on Android smart phone.
+
 Making a new build for App store (Dev only)
 ============================================
 
-1. Open app/build.gradle
-2. Increase the versionCode by 1.
-3. Optionally change the versionName to whatever you want.
+Cyton is an open source blockchain wallet, so you can use source code to build your wallet by yourself, and you can edit source code by yourself. You can start your tour from here: 
+
+1. Clone source code to local
+2. Open config.gradle
+3. Increase the versionCode by 1.
 4. Build the APK however you want (in Android Studio or via gradle)
     - You'll need the release certificate, alias and password.
 5. Commit the changes to build.gradle, upload the APKs to App store
@@ -34,4 +48,4 @@ expected to follow our code of conduct.
 
 MIT License
 ============================================
-Neuron is open sourced under MIT License.
+Cyton is an open source project under MIT License.

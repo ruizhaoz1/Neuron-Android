@@ -1,93 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" 
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:layout_height="match_parent">
 
-    <org.nervos.neuron.custom.TitleBar
-        android:id="@+id/title"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/colorPrimary"
-        app:title="@string/title_receive_qrcode"
-        app:isShowLeft="true"/>
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="340dp"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/rectangle_border_gray_corner">
+        android:layout_height="match_parent"
+        android:background="@color/default_background"
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/qrcode_transfer"
-            android:textSize="12sp"
-            android:textColor="@color/default_black"
-            android:layout_marginTop="20dp"/>
-
-        <ImageView
-            android:id="@+id/receive_qrcode_image"
-            android:layout_width="230dp"
-            android:layout_height="230dp" 
-            android:layout_marginTop="@dimen/default_margin"/>
-        
-        <LinearLayout
+        <com.cryptape.cita_wallet.view.TitleBar
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="12dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:background="@color/default_white_f4">
+            android:layout_alignParentTop="true"
+            app:isShowBottomLine="false"
+            app:isShowLeft="true"
+            app:isShowRight="true"
+            app:right_img="@drawable/ic_share"
+            app:title="@string/title_receive_qrcode"
+            app:title_bg="@color/white"
+            app:title_color="@color/font_title" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/wallet_photo"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/wallet_photo"
-                app:civ_border_width="1dp"
-                app:civ_border_color="@color/default_gray_d5"/>
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/rl_root"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="@dimen/default_margin"
+            android:background="@drawable/qrcode_receive_corner"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_logo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
+                android:src="@mipmap/ic_launcher"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/qrcode_wallet_name"
+                android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/default_black"
-                android:textSize="14sp"
-                android:layout_marginStart="10dp" />
+                android:layout_below="@id/iv_logo"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/font_title"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_logo" />
+
+            <ImageView
+                android:id="@+id/iv_qrcode"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="23dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
+            <RelativeLayout
+                android:id="@+id/rl_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22dp"
+                android:layout_marginTop="37dp"
+                android:layout_marginRight="22dp"
+                android:background="@drawable/qrcode_address_corner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_qrcode">
+
+                <TextView
+                    android:id="@+id/tv_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/default_margin"
+                    android:layout_marginTop="8dp"
+                    android:layout_toLeftOf="@id/tv_copy"
+                    android:textColor="@color/font_title_third"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tv_copy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:text="@string/copy"
+                    android:textColor="@color/font_link"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
 
             <TextView
-                android:id="@+id/qrcode_wallet_address"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="0x12345454645342422334343534343"
-                android:textColor="@color/default_black"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:layout_marginBottom="23dp"
+                android:text="@string/qrcode_receive_tips"
+                android:textColor="@color/font_title_third"
                 android:textSize="12sp"
-                android:lines="1"
-                android:maxEms="12"
-                android:ellipsize="end"
-                android:layout_marginStart="10dp" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rl_address" />
 
-        </LinearLayout>
+        </android.support.constraint.ConstraintLayout>
 
-    </LinearLayout>
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/button_copy_receive_qrcode"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:text="@string/copy_address"
-        android:textSize="15sp"
-        android:textColor="@color/default_black"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/button_corner_gray_f_shape"/>
-
-</LinearLayout>
+    </RelativeLayout>
+</ScrollView>

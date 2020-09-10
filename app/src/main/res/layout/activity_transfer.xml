@@ -1,198 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:background="@color/white"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <org.nervos.neuron.custom.TitleBar
+    <com.cryptape.cita_wallet.view.TitleBar
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@color/colorPrimary"
-        app:title="@string/title_transfer"
-        app:isShowLeft="true"/>
+        app:isShowLeft="true"
+        app:title="@string/title_transfer" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/wallet_photo"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/default_margin"
-        android:src="@drawable/wallet_photo"
-        app:civ_border_width="1dp"
-        app:civ_border_color="@color/default_gray_d5"/>
-
-    <TextView
-        android:id="@+id/wallet_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="@color/default_black"
-        android:text="Watson"
-        android:layout_marginTop="5dp"
-        android:layout_gravity="center_horizontal"/>
-
-    <TextView
-        android:id="@+id/wallet_address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="@color/default_black"
-        android:singleLine="true"
-        android:ellipsize="middle"
-        android:layout_marginStart="@dimen/default_margin"
-        android:layout_marginEnd="@dimen/default_margin"
-        android:layout_marginTop="5dp"
-        android:layout_gravity="center_horizontal"/>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="@dimen/default_margin"
-        android:paddingStart="@dimen/default_margin"
-        android:paddingEnd="@dimen/default_margin"
-        android:background="@android:color/white"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/transfer_address_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="地址"
-            android:textColor="@color/font_black"
-            android:textSize="14sp"/>
-
-        <ImageView
-            android:id="@+id/transfer_address_scan"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/scan"/>
-
-        <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/transfer_address"
-            android:layout_marginStart="@dimen/default_margin"
-            android:background="@android:color/white"
-            android:layout_centerVertical="true"
-            android:hint="请输入收款人地址"
-            android:layout_marginEnd="30dp"
-            android:layout_toStartOf="@id/transfer_address_scan"
-            android:layout_toEndOf="@id/transfer_address_text"
-            android:textSize="14sp"
-            android:gravity="end|center_vertical"
-            android:layout_width="match_parent"
-            android:layout_height="48dp" />
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginStart="@dimen/default_margin"
-        android:layout_marginEnd="@dimen/default_margin"
-        android:background="@color/default_gray_c"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:paddingStart="@dimen/default_margin"
-        android:paddingEnd="@dimen/default_margin"
-        android:gravity="center_vertical"
-        android:background="@android:color/white"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="转账金额"
-            android:textColor="@color/font_black"
-            android:textSize="14sp"/>
-
-        <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/transfer_value"
-            android:layout_marginStart="@dimen/default_margin"
-            android:background="@android:color/white"
-            android:layout_marginEnd="@dimen/default_margin"
-            android:inputType="numberDecimal"
-            android:textSize="14sp"
-            android:gravity="end|center_vertical"
-            android:layout_width="match_parent"
-            android:layout_height="48dp" />
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginStart="@dimen/default_margin"
-        android:layout_marginEnd="@dimen/default_margin"
-        android:background="@color/default_gray_c"/>
-
-    <LinearLayout
-        android:id="@+id/fee_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_margin"
-            android:layout_marginStart="@dimen/default_margin"
-            android:text="交易费用"
-            android:textColor="@color/font_black"
-            android:textSize="14sp"/>
-
-        <android.support.v7.widget.AppCompatSeekBar
-            android:id="@+id/fee_seek_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="@dimen/default_margin"
-            android:layout_marginEnd="@dimen/default_margin">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="慢"
-                android:textSize="12sp"
-                android:textColor="@color/default_gray_6" />
-            <TextView
-                android:id="@+id/fee_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/default_gray_6"
-                android:textSize="12sp"
-                android:layout_centerHorizontal="true"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="快"
-                android:textSize="12sp"
-                android:layout_alignParentRight="true"
-                android:textColor="@color/default_gray_6" />
-        </RelativeLayout>
-    </LinearLayout>
-
-    <android.support.v7.widget.AppCompatButton
+    <com.cryptape.cita_wallet.view.button.CommonButton
         android:id="@+id/next_action_button"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginStart="@dimen/default_margin"
-        android:layout_marginEnd="@dimen/default_margin"
-        android:background="@drawable/button_corner_blue_shape"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
-        android:textSize="15sp"
-        android:textColor="@color/white"
-        android:text="@string/next_action"/>
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        app:status="true"
+        app:text="@string/next_action" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/next_action_button"
+        android:layout_below="@id/title"
+        android:background="@color/default_background">
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="74dp"
+                android:layout_margin="@dimen/default_margin"
+                android:background="@drawable/dialog_background">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/wallet_photo"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/default_margin"
+                    app:civ_border_color="@color/line_input"
+                    app:civ_border_width="1dp" />
+
+                <TextView
+                    android:id="@+id/wallet_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/wallet_photo"
+                    android:layout_marginStart="@dimen/default_margin"
+                    android:layout_marginEnd="@dimen/default_margin"
+                    android:layout_toEndOf="@id/wallet_photo"
+                    android:textColor="@color/font_title"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/wallet_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/wallet_photo"
+                    android:layout_marginStart="@dimen/default_margin"
+                    android:layout_marginEnd="@dimen/default_margin"
+                    android:layout_toEndOf="@id/wallet_photo"
+                    android:ellipsize="middle"
+                    android:singleLine="true"
+                    android:textColor="@color/font_title_second"
+                    android:textSize="15sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/white"
+                android:paddingStart="@dimen/default_margin"
+                android:paddingEnd="@dimen/default_margin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/token_transfer_value"
+                    android:textColor="@color/font_title"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/wallet_balance_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/transfer_value"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@color/white"
+                android:gravity="start|center_vertical"
+                android:hint="@string/token_transfer_value"
+                android:inputType="numberDecimal"
+                android:paddingStart="@dimen/default_margin"
+                android:paddingEnd="@dimen/default_margin"
+                android:textSize="20sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="@dimen/default_margin"
+                android:background="@android:color/white"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/default_margin"
+                android:paddingEnd="@dimen/default_margin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/receive_address"
+                    android:textColor="@color/font_title"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/transfer_address_scan"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/scan" />
+
+            </RelativeLayout>
+
+            <com.cryptape.cita_wallet.view.CompressEditText
+                android:id="@+id/cet_address"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/white"
+                android:paddingStart="@dimen/default_margin"
+                android:paddingEnd="@dimen/default_margin"
+                app:edit_hint="@string/input_receive_address_hint"
+                app:text_color="@color/font_title"
+                app:text_size="12sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="@dimen/default_margin"
+                android:background="@color/white"
+                android:paddingStart="@dimen/default_margin"
+                android:paddingEnd="@dimen/default_margin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/fee_value"
+                    android:textColor="@color/font_title"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/fee_value_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/font_title"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

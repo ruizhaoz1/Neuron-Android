@@ -1,6 +1,9 @@
 #built application files
 *.apk
 *.ap_
+.settings/
+app/.settings/
+
 
 # files for the dex VM
 *.dex
@@ -29,6 +32,7 @@ Thumbs.db
 .idea
 **/.idea/workspace.xml
 workspace.xml
+release/
 
 # .idea/workspace.xml # - remove # and delete .idea if it better suit your needs.
 .gradle

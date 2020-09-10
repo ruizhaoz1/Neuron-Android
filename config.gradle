@@ -1,14 +1,20 @@
 ext.appConfig = [
-        versionCode: 4,
+        versionCode: 15,
 
         versionMajor: 0,
-        versionMinor: 5,
+        versionMinor: 8,
         versionBeta: 0,
 
         signStorePassword: "cryptape2016@#",
-        signKeyAlias: "neuron",
-        signKeyPassword: "cryptape2016@#",
+        signKeyAlias     : "neuron",
+        signKeyPassword  : "cryptape2016@#",
 
+        minSdkVersion    : 21,
+        targetSdkVersion : 27,
+        compileSdkVersion: 27,
+        devVersionName   : "1.0",
+        devResConfigsEn  : "en",
+        devResConfigsDraw: "xxhdpi",
         isDebug: false
 ]
 
